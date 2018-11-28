@@ -16,3 +16,4 @@ TECHNOLOGIES WE PLAN ON USING:
 - Bootstrap
 - Firebase
 - Javascript, JQuery
+- Node.js with Express.js
