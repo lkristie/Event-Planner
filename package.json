@@ -1,0 +1,27 @@
+{
+  "name": "event-planner",
+  "description": "CS 252 Lab 6",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lkristie/Event-Planner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lkristie/Event-Planner/issues"
+  },
+  "homepage": "https://github.com/lkristie/Event-Planner/#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "package.json": "^2.0.1"
+  },
+  "devDependencies": {}
+}
