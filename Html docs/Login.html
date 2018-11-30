@@ -34,12 +34,14 @@
 </div>
 <br>
 <div class="container">
-	<button type="button" onclick="login()" class="btn btn-success">Log In</button>
-	<button type="button" class="btn btn-info">Create An Account</button>
+	<button id="b_login" type="button" onclick="login()" class="btn btn-success">Log In</button>
+	<a href="create account.html" id = "b_pass" type="button" class="btn btn-info">Create An Account</a>
 </div>
 
 
 <script>
+document.getElementById("b_login").onclick = function() {login()};
+//document.getElementById("b_pass").onclick = function() {newAccount()};
 function login(){
 	var user = document.getElementById("user").value;
 	var password = document.getElementById("password").value;
@@ -53,6 +55,10 @@ function login(){
 		window.location.replace("homepage.html");
 		return;
 	}
+}
+function newAccount(){
+	window.location.replace("create account.html");
+}
 </script>
 <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
 <script>
