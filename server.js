@@ -4,7 +4,9 @@ const bodyParser= require("body-parser");
 var fs=require('fs');
 //connect firebase with the server / node.js
 var admin = require('firebase-admin');
-admin.initializeApp({
+//service key
+var serviceAccount=require('firebase-configuration/event-planner-2bed5-firebase-adminsdk-yq09h-6a1aefa4d5.json');
+andmin.initializeApp({
    credential: admin.credential.cert(serviceAccount),
    databaseURL: 'https://event-planner-2bed5.firebaseio.com/'
  });
