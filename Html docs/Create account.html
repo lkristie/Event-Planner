@@ -63,7 +63,7 @@ function send_verification(){
   var userId = user.uid;
 
   var rootRef = firebase.database().ref().child('users/' + userId);
-  rootRef.set({
+  rootRef.update({
   username: name,
   email: email
   });
