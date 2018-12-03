@@ -48,6 +48,7 @@
 document.getElementById("b_create").onclick = function() {send_verification()};
 
 function send_verification(){
+  var name = document.getElementById("username").value;
   var email = document.getElementById("email").value;
 	var password = document.getElementById("password").value;
 
@@ -59,6 +60,13 @@ function send_verification(){
 });
 
   var user = firebase.auth().currentUser;
+  var userId = user.uid;
+
+  var rootRef = firebase.database().ref().child('users/' + userId);
+  rootRef.set({
+  username: name,
+  email: email
+  });
   user.sendEmailVerification().then(function() {
   // Email sent.
     window.alert("Verification sent");
