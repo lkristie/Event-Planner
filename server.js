@@ -1,16 +1,22 @@
 var express= require('express');
 var app=express();
+var server= require('http').Server(app);
 const bodyParser= require("body-parser");
 var fs=require('fs');
 //connect firebase with the server / node.js
 var admin = require('firebase-admin');
 //service key
-var serviceAccount=require('firebase-configuration/event-planner-2bed5-firebase-adminsdk-yq09h-6a1aefa4d5.json');
-andmin.initializeApp({
+let serviceAccount=require('./firebase-configuration/service-key-file.json');
+admin.initializeApp({
    credential: admin.credential.cert(serviceAccount),
-   databaseURL: 'https://event-planner-2bed5.firebaseio.com/'
+   apiKey: "AIzaSyBD-0alEnH2GSG4-ap3JiGhDHi0M5MFhSg",
+   authDomain: "event-planner-2bed5.firebaseapp.com",
+   databaseURL: 'https://event-planner-2bed5.firebaseio.com/',
+   storageBucket: "event-planner-2bed5.appspot.com"
  });
- //need to  create a json configuration file for firebase... figure out how to do it..
+ var db=admin.database();
+ //var app=admin.initializeApp();
+
 //respond with the login page
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/Html docs/Login.html');
