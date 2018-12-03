@@ -6,8 +6,9 @@ var fs=require('fs');
 var admin = require('firebase-admin');
 admin.initializeApp({
    credential: admin.credential.cert(serviceAccount),
-   databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
+   databaseURL: 'https://event-planner-2bed5.firebaseio.com/'
  });
+ //need to  create a json configuration file for firebase... figure out how to do it..
 //respond with the login page
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/Html docs/Login.html');
