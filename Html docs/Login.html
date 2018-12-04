@@ -38,43 +38,43 @@
 	<a href="create account.html" id = "b_pass" type="button" class="btn btn-info">Create An Account</a>
 </div>
 
+
 <script>
 document.getElementById("b_login").onclick = function() {login()};
 //document.getElementById("b_pass").onclick = function() {newAccount()};
 function login(){
 	var email = document.getElementById("user").value;
 	var password = document.getElementById("password").value;
+  var errorF = false;
 
 	data = {
 		"user":email, "password":password
-	}
+		}
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-		// Handle Errors here.
-		var errorCode = error.code;
-		var errorMessage = error.message;
-		
-		if (errorCode === 'auth/wrong-password') {
-		alert('Wrong password.');
-		}
-		else if (errorCode === 'auth/invalid-email') {
-		alert('Invalid email.');
-		}
-		else if (errorCode === 'auth/user-not-found') {
-		alert('User not found.');
-		} else {
-		alert(errorMessage);
-		}
-		console.log(error);
-		errorF = true;
-  	});
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    if (errorCode === 'auth/wrong-password') {
+      alert('Wrong password.');
+    }
+    else if (errorCode === 'auth/invalid-email') {
+      alert('Invalid email.');
+    }
+    else if (errorCode === 'auth/user-not-found') {
+      alert('User not found.');
+    } else {
+      alert(errorMessage);
+    }
+   console.log(error);
+   errorF = true;
+  });
 
-  	var user = firebase.auth().currentUser; 
-	//need to send info to the server using /loginsubmit
+  var user = firebase.auth().currentUser;
 
-  	if (user && !errorF) {
-    	// User is signed in.
-		window.location.replace("homepage.html");
-  	}
+  if (user && !errorF) {
+    // User is signed in.
+    window.location.replace("homepage.html");
+  }
 }
 function newAccount(){
 	window.location.replace("create account.html");
@@ -93,6 +93,6 @@ function newAccount(){
   };
   firebase.initializeApp(config);
 </script>
-<!--<script src="/Html docs/Loginscript.js"></script>-->
+
 </body>
 </html>
