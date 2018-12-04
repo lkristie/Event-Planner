@@ -55,8 +55,13 @@ function login(){
         var user = firebase.auth().currentUser;
     		if (user && !errorF) {
     			// User is signed in.
-    			console.log("in login html file");
-    			window.location.replace("homepage.html");
+          if(!firebase.auth().currentUser.emailVerified) {
+            alert('Need to Verify Email First.');
+          }
+          else {
+    			  //console.log("in login html file");
+    			  window.location.replace("homepage.html");
+          }
     		}
       }).catch(function(error) {
 			// Handle Errors here.
