@@ -45,6 +45,7 @@ document.getElementById("b_login").onclick = function() {login()};
 function login(){
 	var email = document.getElementById("user").value;
 	var password = document.getElementById("password").value;
+  var errorF = false;
 
 	data = {
 		"user":email, "password":password
@@ -53,7 +54,6 @@ function login(){
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    var errorF = false;
     if (errorCode === 'auth/wrong-password') {
       alert('Wrong password.');
     }
