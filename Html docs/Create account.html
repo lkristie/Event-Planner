@@ -51,21 +51,32 @@ function send_verification(){
     return;
   }
 
-  firebase.auth().fetchSignInMethodsForEmail(email).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  if (errorCode === 'auth/invalid-email') {
-    alert('Invalid email.');
-  }
-  console.log(error);
-  window.location.replace("create account.html");
-  invalid = true;
-  return;
-});
-
   if(!invalid) {
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  firebase.auth().createUserWithEmailAndPassword(email, password).then((res) => {
+    var user = firebase.auth().currentUser;
+    if(user != null) {
+    var userId = user.uid;
+    }
+    else {
+      invalid = true;
+    }
+
+    if(!invalid) {
+    var ref = firebase.database().ref('users');
+    var data = {
+      email: email
+    }
+    ref.push(data);
+
+    user.sendEmailVerification().then(function() {
+    // Email sent.
+      window.alert("Verification sent");
+    }).catch(function(error) {
+    // An error happened.
+      window.alert("Error: " + error.message);
+    });
+  }//invalid
+  }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
@@ -77,32 +88,10 @@ function send_verification(){
   }
   console.log(error);
   window.location.replace("create account.html");
-  invalid = true;
-  return;
 });
 }//invalid
 
-  var user = firebase.auth().currentUser;
-  if(user != "") {
-  var userId = user.uid;
-  invalid = true;
-  }
 
-  if(!invalid) {
-  var ref = firebase.database().ref('users');
-  var data = {
-    email: email
-  }
-  ref.push(data);
-
-  user.sendEmailVerification().then(function() {
-  // Email sent.
-    window.alert("Verification sent");
-  }).catch(function(error) {
-  // An error happened.
-    window.alert("Error: " + error.message);
-  });
-}//invalid
 }
 </script>
 
