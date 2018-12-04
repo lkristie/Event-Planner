@@ -21,7 +21,13 @@ admin.initializeApp({
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/Html docs/Login.html');
  });
-
+app.post('/loginsubmit', (req, res) => {
+   res.statusCode=200;
+   console.log("in function");
+   res.setHeader('Content-Type', 'text/html');
+   res.send('Html docs/homepage.html');
+   //res.status(200).send(res);
+});
 
  app.listen(8080, () => {
     console.log('listening on 8080');
