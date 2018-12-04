@@ -35,7 +35,7 @@
 <br>
 <div class="container">
 	<button id="b_login" type="button" onclick="login()" class="btn btn-success">Log In</button>
-	<a href="create account.html" id = "b_pass" type="button" class="btn btn-info">Create An Account</a>
+	<a href="CreateAccount.html" id = "b_pass" type="button" class="btn btn-info">Create An Account</a>
 </div>
 
 
@@ -56,7 +56,7 @@ function login(){
     			// User is signed in.
     			console.log("in login html file");
     			window.location.replace("homepage.html");
-    		}	
+    		}
       }).catch(function(error) {
 			// Handle Errors here.
 			var errorCode = error.code;
@@ -79,7 +79,7 @@ function login(){
 
 }
 function newAccount(){
-	window.location.replace("create account.html");
+	window.location.replace("CreateAccount.html");
 }
 </script>
 <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
