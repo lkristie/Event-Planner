@@ -23,10 +23,11 @@ app.get('/', function (req, res) {
  });
 app.get('/gethomepage', function(req, res){
    res.sendFile(__dirname+'/Html docs/homepage.html');
-})
-app.get('/getcreateUser', function(req, res){
+});
+app.get('/CreateAccount.html', function(req, res){
    res.sendFile(__dirname+"/Html docs/CreateAccount.html");
-})
+});
+
 //not using this post
 app.post('/loginsubmit', (req, res) => {
    //res.statusCode=200;
