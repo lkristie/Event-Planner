@@ -51,34 +51,50 @@ function send_verification(){
     return;
   }
 
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  if(!invalid) {
+  firebase.auth().createUserWithEmailAndPassword(email, password).then((res) => {
+    var user = firebase.auth().currentUser;
+    if(user != null) {
+    var userId = user.uid;
+    }
+    else {
+      invalid = true;
+    }
+
+    if(!invalid) {
+    var ref = firebase.database().ref('users');
+    var data = {
+      email: email
+    }
+    ref.push(data);
+
+    user.sendEmailVerification().then(function() {
+    // Email sent.
+      window.alert("Verification sent");
+    }).catch(function(error) {
+    // An error happened.
+      window.alert("Error: " + error.message);
+    });
+  }//invalid
+  }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
   if (errorCode === 'auth/invalid-email') {
     alert('Invalid email.');
   }
-  invalid = true;
-});
-
-  var user = firebase.auth().currentUser;
-  var userId = user.uid;
-
-  if(!invalid) {
-  var ref = firebase.database().ref('users');
-  var data = {
-    email: email
+  else if (errorCode === 'auth/email-already-in-use') {
+    alert('Email is already in use.');
   }
-  ref.push(data);
-
-  user.sendEmailVerification().then(function() {
-  // Email sent.
-    window.alert("Verification sent");
-  }).catch(function(error) {
-  // An error happened.
-    window.alert("Error: " + error.message);
-  });
+  else if (errorCode === 'auth/weak-password') {
+    alert('Password is weak. Must be 6 or more characters');
+  }
+  console.log(error);
+  window.location.replace("create account.html");
+});
 }//invalid
+
+
 }
 </script>
 
