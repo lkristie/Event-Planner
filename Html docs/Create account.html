@@ -38,7 +38,7 @@
 </div>
 <script>
 document.getElementById("b_create").onclick = function() {send_verification()};
-
+var invalid = false;
 function send_verification(){
   var email = document.getElementById("email").value;
 	var password = document.getElementById("password").value;
@@ -55,16 +55,22 @@ function send_verification(){
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
-  // ...
+  if (errorCode === 'auth/invalid-email') {
+    alert('Invalid email.');
+  }
+  invalid = true;
 });
 
   var user = firebase.auth().currentUser;
   var userId = user.uid;
 
-  var rootRef = firebase.database().ref().child('users/' + userId);
-  rootRef.update({
-  email: email
-  });
+  if(!invalid) {
+  var ref = firebase.database().ref('users');
+  var data = {
+    email: email
+  }
+  ref.push(data);
+
   user.sendEmailVerification().then(function() {
   // Email sent.
     window.alert("Verification sent");
@@ -72,6 +78,7 @@ function send_verification(){
   // An error happened.
     window.alert("Error: " + error.message);
   });
+}//invalid
 }
 </script>
 
