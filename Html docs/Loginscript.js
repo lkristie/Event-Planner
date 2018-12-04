@@ -2,12 +2,12 @@ function login(){
 	var user = document.getElementById("user").value;
 	var password = document.getElementById("password").value;
 	var actionCodeSettings = {
-  // URL you want to redirect back to. The domain (www.example.com) for this
-  // URL must be whitelisted in the Firebase Console.
-  url: 'https://event-planner-2bed5.firebaseapp.com',
-  // This must be true.
-  handleCodeInApp: true,
-};
+    // URL you want to redirect back to. The domain (www.example.com) for this
+    // URL must be whitelisted in the Firebase Console.
+    url: 'https://event-planner-2bed5.firebaseapp.com',
+    // This must be true.
+    handleCodeInApp: true,
+  };
 
 	data = {
 		"user":user, "password":password
@@ -18,7 +18,7 @@ function login(){
 		window.location.replace("homepage.html");
 		return;
 	}
-	$.post("/login")
+//	$.post("/login")
 
 	firebase.auth().sendSignInLinkToEmail(user, actionCodeSettings)
   .then(function() {
