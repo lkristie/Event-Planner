@@ -50,7 +50,14 @@ function login(){
 			data = {
 				"user":email, "password":password
 				}
-			firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+			firebase.auth().signInWithEmailAndPassword(email, password).then((res) => {
+        var user = firebase.auth().currentUser;
+    		if (user && !errorF) {
+    			// User is signed in.
+    			console.log("in login html file");
+    			window.location.replace("homepage.html");
+    		}	
+      }).catch(function(error) {
 			// Handle Errors here.
 			var errorCode = error.code;
 			var errorMessage = error.message;
@@ -68,14 +75,8 @@ function login(){
 		console.log(error);
 		errorF = true;
 		});
-		var user = firebase.auth().currentUser;
-		if (user && !errorF) {
-			// User is signed in.
-			console.log("in login html file");
-			window.location.replace("homepage.html");
-		}	
 	//});
-    
+
 }
 function newAccount(){
 	window.location.replace("create account.html");
