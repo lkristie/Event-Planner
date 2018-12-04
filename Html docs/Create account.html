@@ -86,6 +86,9 @@ function send_verification(){
   else if (errorCode === 'auth/email-already-in-use') {
     alert('Email is already in use.');
   }
+  else if (errorCode === 'auth/weak-password') {
+    alert('Password is weak. Must be 6 or more characters');
+  }
   console.log(error);
   window.location.replace("create account.html");
 });
