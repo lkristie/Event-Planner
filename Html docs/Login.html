@@ -47,33 +47,34 @@ function login(){
 
 	data = {
 		"user":email, "password":password
-		}
+	}
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    var errorF = false;
-    if (errorCode === 'auth/wrong-password') {
-      alert('Wrong password.');
-    }
-    else if (errorCode === 'auth/invalid-email') {
-      alert('Invalid email.');
-    }
-    else if (errorCode === 'auth/user-not-found') {
-      alert('User not found.');
-    } else {
-      alert(errorMessage);
-    }
-   console.log(error);
-   errorF = true;
-  });
+		// Handle Errors here.
+		var errorCode = error.code;
+		var errorMessage = error.message;
+		var errorF = false;
+		if (errorCode === 'auth/wrong-password') {
+		alert('Wrong password.');
+		}
+		else if (errorCode === 'auth/invalid-email') {
+		alert('Invalid email.');
+		}
+		else if (errorCode === 'auth/user-not-found') {
+		alert('User not found.');
+		} else {
+		alert(errorMessage);
+		}
+		console.log(error);
+		errorF = true;
+  	});
 
-  var user = firebase.auth().currentUser;
+  	var user = firebase.auth().currentUser;
+	//need to send info to the server using /loginsubmit
 
-  if (user && !errorF) {
-    // User is signed in.
-    window.location.replace("homepage.html");
-  }
+  	if (user && !errorF) {
+    	// User is signed in.
+    	window.location.replace("homepage.html");
+  	}
 }
 function newAccount(){
 	window.location.replace("create account.html");

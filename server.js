@@ -23,12 +23,12 @@ app.get('/', function (req, res) {
  });
 app.post('/loginsubmit', (req, res) => {
    res.statusCode=200;
-   console.log("in function");
+   console.log("in app.post login/submit");
    res.setHeader('Content-Type', 'text/html');
-   res.send('Html docs/homepage.html');
-   //res.status(200).send(res);
+   //res.send('Html docs/homepage.html');
+   res.status(200).send();
 });
 
- app.listen(8080, () => {
+app.listen(8080, () => {
     console.log('listening on 8080');
-  });
+});
