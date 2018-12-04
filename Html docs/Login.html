@@ -35,7 +35,8 @@
 <br>
 <div class="container">
 	<button id="b_login" type="button" onclick="login()" class="btn btn-success">Log In</button>
-	<a href="CreateAccount.html" id = "b_pass" type="button" class="btn btn-info">Create An Account</a>
+	<!--<a href="CreateAccount.html" id = "b_pass" type="button" class="btn btn-info">Create An Account</a>-->
+	<button id="b_pass" type="button" class="btn btn-info" onclick="newAccount()">CreateAccount</button>
 </div>
 
 
@@ -84,6 +85,8 @@ function login(){
 
 }
 function newAccount(){
+	console.log("newAccount");
+	window.alert("new Account page");
 	window.location.replace("CreateAccount.html");
 }
 </script>
