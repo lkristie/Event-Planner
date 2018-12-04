@@ -42,18 +42,38 @@
 document.getElementById("b_login").onclick = function() {login()};
 //document.getElementById("b_pass").onclick = function() {newAccount()};
 function login(){
-	var user = document.getElementById("user").value;
+	var email = document.getElementById("user").value;
 	var password = document.getElementById("password").value;
 
 	data = {
-		"user":user, "password":password
+		"user":email, "password":password
 		}
-	window.alert("HELLO");
-	window.location.replace("homepage.html");
-	if(user != null && user.hasOwnProperty('uid') && user.hasOwnProperty('idToken')){
-		window.location.replace("homepage.html");
-		return;
-	}
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    var errorF = false;
+    if (errorCode === 'auth/wrong-password') {
+      alert('Wrong password.');
+    }
+    else if (errorCode === 'auth/invalid-email') {
+      alert('Invalid email.');
+    }
+    else if (errorCode === 'auth/user-not-found') {
+      alert('User not found.');
+    } else {
+      alert(errorMessage);
+    }
+   console.log(error);
+   errorF = true;
+  });
+
+  var user = firebase.auth().currentUser;
+
+  if (user && !errorF) {
+    // User is signed in.
+    window.location.replace("homepage.html");
+  }
 }
 function newAccount(){
 	window.location.replace("create account.html");
