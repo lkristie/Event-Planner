@@ -52,7 +52,7 @@ function login(){
 		// Handle Errors here.
 		var errorCode = error.code;
 		var errorMessage = error.message;
-		var errorF = false;
+		
 		if (errorCode === 'auth/wrong-password') {
 		alert('Wrong password.');
 		}
@@ -68,12 +68,12 @@ function login(){
 		errorF = true;
   	});
 
-  	var user = firebase.auth().currentUser;
+  	var user = firebase.auth().currentUser; 
 	//need to send info to the server using /loginsubmit
 
   	if (user && !errorF) {
     	// User is signed in.
-    	window.location.replace("homepage.html");
+		window.location.replace("homepage.html");
   	}
 }
 function newAccount(){
