@@ -21,13 +21,21 @@ admin.initializeApp({
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/Html docs/Login.html');
  });
+app.get('/gethomepage', function(req, res){
+   res.sendFile(__dirname+'/Html docs/homepage.html');
+})
+app.get('/getcreateUser', function(req, res){
+   res.sendFile(__dirname+"/Html docs/CreateAccount.html");
+})
+//not using this post
 app.post('/loginsubmit', (req, res) => {
-   res.statusCode=200;
-   console.log("in app.post login/submit");
-   res.setHeader('Content-Type', 'text/html');
-   //res.send('Html docs/homepage.html');
+   //res.statusCode=200;
    res.status(200).send();
+   console.log("in app.post login/submit");
+  // res.setHeader('Content-Type', 'text/html');
+  // res.send('Html docs/homepage.html');
 });
+
 
 app.listen(8080, () => {
     console.log('listening on 8080');
