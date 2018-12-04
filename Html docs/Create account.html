@@ -42,6 +42,14 @@ document.getElementById("b_create").onclick = function() {send_verification()};
 function send_verification(){
   var email = document.getElementById("email").value;
 	var password = document.getElementById("password").value;
+  if(email === "") {
+    window.alert("Error: E-mail was left empty");
+    return;
+  }
+  else if(password === "") {
+    window.alert("Error: Password was left empty");
+    return;
+  }
 
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
