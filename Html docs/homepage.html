@@ -2,7 +2,7 @@
 <html>
     <style>
     #event-button{
-        position: absolute;
+        position: static;
         right: 100px;
     }
     </style>
@@ -20,8 +20,10 @@
         </div>
     </head>
     <body>
-        <button type="button" class="btn btn-info" id="event-button" data-toggle="modal"data-target="#ModalCenter">Create a Event</button>
-        <!-- Modal -->
+		<div class="container">
+			<button type="button" class="btn btn-info" id="event-button" data-toggle="modal"data-target="#ModalCenter">Create a Event</button>
+        </div>
+		<!-- Modal -->
         <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
