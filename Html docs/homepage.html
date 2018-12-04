@@ -148,7 +148,27 @@
         <script>
         document.getElementById("b_create").onclick = function() {create_event()};
         function create_event(){
+          var name = document.getElementById("event-title").value;
+          var address = document.getElementById("streetaddress").value;
+          var city = document.getElementById("city").value;
+          var state = document.getElementById("state").value;
+          var zip = document.getElementById("zip").value;
+          var date = document.getElementById("chooseDate").value;
+          var eTime = document.getElementById("inputEventTime").value;
+          var reminder = document.getElementById("inputReminderTime").value;
 
+          var ref = firebase.database().ref('events');
+          var data = {
+            name: name,
+            address: address,
+            city: city,
+            state: state,
+            zip: zip,
+            date: date,
+            eTime: eTime,
+            reminder: reminder,
+          }
+          ref.push(data);
         }
         </script>
 
