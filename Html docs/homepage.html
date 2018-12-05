@@ -125,11 +125,6 @@
 					</tr>
 				<!--</thead>
 				<tbody>-->
-					<th scope="row">testing</th>
-                    <td>1/1/1111</td>
-                    <td>103 sesame street</td>
-					<td>12:00</td>
-					<td>12 hours before</td>
 				<!--</tbody>-->
 			</table>
 		</div>
@@ -147,6 +142,40 @@
           firebase.initializeApp(config);
         </script>
         <script>
+        window.onload = function() {
+          var key;
+          var ref = firebase.database().ref('users');
+          var email = localStorage.getItem("email");
+          //console.log(email);
+          ref.once('value', function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+          var childKey = childSnapshot.key;
+          var childData = childSnapshot.val();
+          //console.log(childData["email"]);
+          if( childData["email"] === email) {
+            key = childKey;
+            //console.log(key);
+          }
+        });
+      }).then((res) => {
+          //console.log("flag");
+          var eRef = firebase.database().ref('users/'+ key + '/events/');
+          eRef.once('value', function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+          var childData = childSnapshot.val();
+          //console.log(childData);
+          var name =  childData["name"];
+          var address = childData["address"];
+          var date = childData["date"];
+          var eTime = childData["eTime"];
+          var reminder = childData["reminder"];
+          $('#eventTable').append('<tr><td>'+name+'</td><td>'+address+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
+          //start();
+        });
+      });
+    });
+  };
+
         document.getElementById("logout-button").onclick = function() {log_out()};
         function log_out(){
           firebase.auth().signOut().then(function() {
