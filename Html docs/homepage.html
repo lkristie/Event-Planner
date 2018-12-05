@@ -171,7 +171,7 @@
           var eTime = childData["eTime"];
           var reminder = childData["reminder"];
           //$('#eventTable').append('<tr><td>'+name+'</td><td>'+address+' '+city+' '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
-          $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
+          $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+' '+city+' '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
                 +'<button type="button" class="btn btn-default" onclick="editCol()" aria-label="Left Align"\><span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button>'
                      +'</td></tr>');
           //start();
@@ -205,7 +205,7 @@
             var reminder = document.getElementById("inputReminderTime").value;
 
             //insert element into the table
-            $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
+            $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+' '+city+' '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
                 +'<button type="button" class="btn btn-default" onclick="editCol()" aria-label="Left Align"\><span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button>'
                      +'</td></tr>');
             //code for button to edit
