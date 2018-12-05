@@ -27,7 +27,9 @@ app.get('/homepage.html', function(req, res){
 app.get('/CreateAccount.html', function(req, res){
    res.sendFile(__dirname+"/Html docs/CreateAccount.html");
 });
-
+app.get('/login.html', function(req, res){
+   res.sendFile(__dirname+"/Html docs/Login.html");
+});
 //not using this post
 app.post('/loginsubmit', (req, res) => {
    //res.statusCode=200;
