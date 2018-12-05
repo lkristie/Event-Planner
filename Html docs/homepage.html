@@ -328,7 +328,7 @@
         //ref.push(data);
       });
         }
-        document.getElementById("b_create").onclick = function() {create_event()};
+        document.getElementById("b_create").onclick = function() {create_event() addReminder()};
         function create_event(){
             var name = document.getElementById("event-title").value;
             var address = document.getElementById("streetaddress").value;
@@ -434,7 +434,18 @@
     });
             //window.alert("This button works");
         }
-        </script>
+        function addReminder(){
+			var name = document.getElementById("event-title").value;
+            var address = document.getElementById("streetaddress").value;
+            var city = document.getElementById("city").value;
+            var state = document.getElementById("state").value;
+            var zip = document.getElementById("zip").value;
+            var date = document.getElementById("chooseDate").value;
+            var eTime = document.getElementById("inputEventTime").value;
+            var reminder = document.getElementById("inputReminderTime").value;
+			
+		
+		</script>
 
     <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
