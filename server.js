@@ -33,7 +33,7 @@ app.get('/login.html', function(req, res){
 //not using this post
 app.post('/loginsubmit', (req, res) => {
    //res.statusCode=200;
-   res.status(200).send();
+   //res.status(200).send();
    console.log("in app.post login/submit");
   // res.setHeader('Content-Type', 'text/html');
   // res.send('Html docs/homepage.html');
