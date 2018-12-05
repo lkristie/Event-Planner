@@ -21,7 +21,7 @@ admin.initializeApp({
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/Html docs/Login.html');
  });
-app.get('/gethomepage', function(req, res){
+app.get('/homepage.html', function(req, res){
    res.sendFile(__dirname+'/Html docs/homepage.html');
 });
 app.get('/CreateAccount.html', function(req, res){
