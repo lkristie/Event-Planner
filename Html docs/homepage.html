@@ -118,7 +118,6 @@
 				<!--<thead>-->
 					<tr>
 						<th scope="col">Event</th>
-            <th scope="col">Address</th>
 						<th scope="col">Date</th>
 						<th scope="col">Time</th>
 						<th scopr="col">reminder</th>
@@ -169,7 +168,7 @@
           var date = childData["date"];
           var eTime = childData["eTime"];
           var reminder = childData["reminder"];
-          $('#eventTable').append('<tr><td>'+name+'</td><td>'+address+'</td><td>'+date+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
+          $('#eventTable').append('<tr><td>'+name+'</td><td>'+address+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
           //start();
         });
       });
@@ -201,7 +200,7 @@
             var reminder = document.getElementById("inputReminderTime").value;
 
             //insert element into the table
-            $('#eventTable').append('<tr><td>'+name+'</td><td>'+address+'</td><td>'+date+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
+            $('#eventTable').append('<tr><td>'+name+'</td><td>'+address+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
 
           var user = firebase.auth().currentUser;
           var userId = user.uid;
