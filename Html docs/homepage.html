@@ -328,7 +328,7 @@
         //ref.push(data);
       });
         }
-        document.getElementById("b_create").onclick = function() {create_event() addReminder()};
+        document.getElementById("b_create").onclick = function() {create_event(); addReminder();};
         function create_event(){
             var name = document.getElementById("event-title").value;
             var address = document.getElementById("streetaddress").value;
@@ -444,10 +444,17 @@
             var eTime = document.getElementById("inputEventTime").value;
             var reminder = document.getElementById("inputReminderTime").value;
 			
-			var schedule = require("../node-schedule");
+			//var schedule = require("../node-schedule");
 
-			var splitDate = data.split("/");
-			window.alert(splitDate[0]);
+			var splitDate = date.split("/");
+			var splitTime = eTime.split(/:| /);
+			var tfTime = parseInt(splitTime[0],10);
+			if(splitTime[3] =="pm"){
+				tfTime = +tfTime + 12;
+				splitTime[0] = tfTime;
+			}
+			//var j = 
+			window.alert(tfTime);
 
 }
 			
