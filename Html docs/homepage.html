@@ -151,12 +151,6 @@
             var eTime = document.getElementById("inputEventTime").value;
             var reminder = document.getElementById("inputReminderTime").value;
             
-            //code to add it to the table
-            var table=document.getElementById("eventTable");
-            var totalRowCount=table.rows.length;
-            window.alert(totalRowCount);
-            // Create an empty <tr> element and add it to the 1st position of the table:
-            var row = table.insertRow(totalRowCount);
             //insert element into the table
             $('#eventTable').append('<tr><td>'+name+'</td><td>'+address+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
 
