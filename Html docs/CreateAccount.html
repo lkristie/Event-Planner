@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+<style>
+  #back-button{
+    position: absolute;
+    top:15px;
+    left:15px;
+  }
+</style>
 <head>
 <title>Create An Account</title>
   <meta charset="utf-8">
@@ -10,6 +17,10 @@
 <title>Page Title</title>
 </head>
 <body>
+  <!--Back button-->
+  <button type="button" id="back-button" class="btn btn-default" onclick="backToLogin()"aria-label="Left Align">
+      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+  </button>
 <div class="container">
 
 		<h1>New Account</h1>
@@ -93,10 +104,12 @@ function send_verification(){
   window.location.replace("CreateAccount.html");
 });
 }//invalid
-
-
+}
+function backToLogin(){
+  window.location.replace("login.html");
 }
 </script>
+
 
 <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
 <script>
