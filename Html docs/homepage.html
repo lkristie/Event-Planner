@@ -102,7 +102,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="b_create" type="button" class="btn btn-success" data-dismiss="modal" onclick="addEventToTable()">Create</button>
+                    <button id="b_create" type="button" class="btn btn-success" data-dismiss="modal">Create</button> //onclick="addEventToTable()"
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
@@ -150,11 +150,10 @@
             var date = document.getElementById("chooseDate").value;
             var eTime = document.getElementById("inputEventTime").value;
             var reminder = document.getElementById("inputReminderTime").value;
-            
+
             //insert element into the table
             $('#eventTable').append('<tr><td>'+name+'</td><td>'+address+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
 
-<<<<<<< HEAD
           var user = firebase.auth().currentUser;
           var userId = user.uid;
           var key;
@@ -191,21 +190,6 @@
         //ref.push(data);
       });
         }
-=======
-            var ref = firebase.database().ref('events');
-            var data = {
-                name: name,
-                address: address,
-                city: city,
-                state: state,
-                zip: zip,
-                date: date,
-                eTime: eTime,
-                reminder: reminder,
-            }
-            ref.push(data);
-            }
->>>>>>> 7ae015d4bbf9f408f951bdcbc45b11adde70e531
         </script>
 
     <!-- Optional JavaScript -->
