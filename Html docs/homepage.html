@@ -258,7 +258,7 @@
           var eTime = childData["eTime"];
           var reminder = childData["reminder"];
           //$('#eventTable').append('<tr><td>'+name+'</td><td>'+address+' '+city+' '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
-          $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+' '+city+' '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
+          $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+': '+city+', '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
                 +'<button id=name type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align data-toggle="modal"data-target="#ModalCenter2""\><span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button>'
                      +'</td></tr>');
           //start();
@@ -296,7 +296,7 @@
             var reminder = document.getElementById("inputReminderTime").value;
 
             //insert element into the table
-            $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+' '+city+' '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
+            $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+': '+city+', '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
                 +'<button id=name type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align data-toggle="modal"data-target="#ModalCenter2""\><span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button>'
                      +'</td></tr>');
             //code for button to edit
@@ -376,11 +376,31 @@
             var eTime = childData["eTime"];
             var reminder = childData["reminder"];
             document.getElementById('event-title').setAttribute('value', name);
-            document.getElementById('event-title').setAttribute('value', name);
+            document.getElementById('streetaddress').setAttribute('value', address);
+            document.getElementById('city').setAttribute('value', city);
+            document.getElementById('state').setAttribute('value', state);
+            document.getElementById('zip').setAttribute('value', zip);
+            document.getElementById('chooseDate').setAttribute('value', date);
+            document.getElementById('inputEventTime').setAttribute('value', eTime);
+            document.getElementById('inputReminderTime').setAttribute('value', reminder);
+            var data = {
+              name: name,
+              address: address,
+              city: city,
+              state: state,
+              zip: zip,
+              date: date,
+              eTime: eTime,
+              reminder: reminder,
+              email: email
+            };
+            var updates = {};
+            updates['/users/' + key + '/events/' + name] = data;
+            firebase.database().ref().update(updates);
           }
         });
       })
-        )};
+    });
             //window.alert("This button works");
         }
         </script>
