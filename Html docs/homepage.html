@@ -259,15 +259,10 @@
           var reminder = childData["reminder"];
           //$('#eventTable').append('<tr><td>'+name+'</td><td>'+address+' '+city+' '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
           $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+': '+city+', '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
-<<<<<<< HEAD
-                +'<button id=temp type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align" data-toggle="modal" data-target="#ModalCenter2"\><span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button>'
-                     +'</td></tr>');
-           document.getElementById("temp").setAttribute('id', name);
-=======
-                +'<button id=name type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align" data-toggle="modal" data-target="#ModalCenter2"\> <span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button\>'
+                +'<button id=temp type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align" data-toggle="modal" data-target="#ModalCenter2"\> <span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button\>'
                 +'<button type="button" class="btn btn-default" aria-label="trash"\><span class="glyphicon glyphicon-trash" aria-hidden="true"\></span\></button\>'
                     +'</td></tr>');
->>>>>>> a575684e6cdf0a67e941180dc4d5217e1ddd95bc
+           document.getElementById("temp").setAttribute('id', name);
           //start();
         });
       });
@@ -342,7 +337,7 @@
           }
         })
       })
-        //window.location.replace("homepage.html");
+        window.location.replace("homepage.html");
       });
         }
         document.getElementById("b_create").onclick = function() {create_event()};
@@ -358,16 +353,12 @@
 
             //insert element into the table
             $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+': '+city+', '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
-<<<<<<< HEAD
                 +'<button id=temp type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align data-toggle="modal"data-target="#ModalCenter2""\><span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button>'
-                     +'</td></tr>');
+                +'<button type="button" class="btn btn-default" aria-label="trash"\><span class="glyphicon glyphicon-trash" aria-hidden="true"\></span\></button\>'
+                       +'</td></tr>');
             document.getElementById("temp").setAttribute('id', name);
-=======
-                +'<button id=name type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align data-toggle="modal"data-target="#ModalCenter2""\><span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button>'
-                    + +'<button type="button" class="btn btn-default" aria-label="trash"\><span class="glyphicon glyphicon-trash" aria-hidden="true"\></span\></button\>'
-                    +'</td></tr>');
->>>>>>> a575684e6cdf0a67e941180dc4d5217e1ddd95bc
-            //code for button to edit
+
+//code for button to edit
             //glyphicon glyphicon-edit
             /*<button type="button" class="btn btn-default" aria-label="Left Align">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -410,14 +401,8 @@
         }
         function editCol(clicked_id){
             //$('td').prop('contenteditable',true);
-<<<<<<< HEAD
             //console.log($('td'));
-            //console.log($('td').text());
-=======
-            console.log($('td'));
-            console.log($('td').text());
->>>>>>> a575684e6cdf0a67e941180dc4d5217e1ddd95bc
-
+            //console.log($('td').text
             var key;
             var ref = firebase.database().ref('users');
             var email = localStorage.getItem("email");
