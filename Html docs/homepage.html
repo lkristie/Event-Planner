@@ -157,18 +157,41 @@
           var eTime = document.getElementById("inputEventTime").value;
           var reminder = document.getElementById("inputReminderTime").value;
 
-          var ref = firebase.database().ref('events');
-          var data = {
-            name: name,
-            address: address,
-            city: city,
-            state: state,
-            zip: zip,
-            date: date,
-            eTime: eTime,
-            reminder: reminder,
+          var user = firebase.auth().currentUser;
+          var userId = user.uid;
+          var key;
+
+          var ref = firebase.database().ref('users');
+          var email = localStorage.getItem("email");
+          //console.log(email);
+          ref.once('value', function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+          var childKey = childSnapshot.key;
+          var childData = childSnapshot.val();
+          console.log(childData["email"]);
+          if( childData["email"] === email) {
+            key = childKey;
+            //console.log(key);
           }
-          ref.push(data);
+        });
+      }).then((res) => {
+        //console.log(key);
+        var data = {
+          name: name,
+          address: address,
+          city: city,
+          state: state,
+          zip: zip,
+          date: date,
+          eTime: eTime,
+          reminder: reminder,
+          email: email
+        };
+        var updates = {};
+        updates['/users/' + key + '/events/' + name] = data;
+        firebase.database().ref().update(updates);
+        //ref.push(data);
+      });
         }
         </script>
 

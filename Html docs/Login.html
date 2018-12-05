@@ -60,6 +60,7 @@ function login(){
           }
           else {
     			  //console.log("in login html file");
+            localStorage.setItem("email", email);
     			  window.location.replace("homepage.html");
           }
     		}
@@ -86,7 +87,7 @@ function login(){
 }
 function newAccount(){
 	console.log("newAccount");
-	window.alert("new Account page");
+	//window.alert("new Account page");
 	window.location.replace("CreateAccount.html");
 }
 </script>
