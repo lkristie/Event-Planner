@@ -18,6 +18,11 @@ admin.initializeApp({
  var db=admin.database();
  //var app=admin.initializeApp();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
 //respond with the login page
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/Html docs/Login.html');
@@ -40,6 +45,15 @@ app.post('/loginsubmit', (req, res) => {
   // res.send('Html docs/homepage.html');
 });
 
+app.post('/remindersubmit',bodyParser, function(req, res){
+	
+	//idk
+	let body = '';
+	//var date = req.body.d;
+	console.log(date);
+	res.end("yes");
+	
+});
 
 app.listen(8080, () => {
     console.log('listening on 8080');

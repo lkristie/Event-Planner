@@ -468,8 +468,12 @@
 			var splitTime = eTime.split(":");
 			var tfTime = parseInt(splitTime[0],10);
 			var d = new Date(date +" "+ eTime);
-			var j = schedule.scheduleJob(d,function(){
+			//var j = schedule.scheduleJob(d,function(){
 			window.alert(d);
+			$.post("http://localhost:8080/remindersubmit",{d: d},function(data){
+				if(data=='done'){
+					alert('submitted');
+				}
 			});
 
 }
