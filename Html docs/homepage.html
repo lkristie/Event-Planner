@@ -259,9 +259,12 @@
           var reminder = childData["reminder"];
           //$('#eventTable').append('<tr><td>'+name+'</td><td>'+address+' '+city+' '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
           $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+': '+city+', '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
-                +'<button id=name type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align" data-toggle="modal" data-target="#ModalCenter2"\> <span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button\>'
-                +'<button type="button" class="btn btn-default" aria-label="trash"\><span class="glyphicon glyphicon-trash" aria-hidden="true"\></span\></button\>'
+                +'<button id=temp type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align" data-toggle="modal" data-target="#ModalCenter2"\> <span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button\>'
+                +'<button id=delete type="button" class="btn btn-default" onclick="delEvent(this.id)" aria-label="trash"\><span class="glyphicon glyphicon-trash" aria-hidden="true"\></span\></button\>'
                     +'</td></tr>');
+           document.getElementById("temp").setAttribute('id', name);
+           var name2 = name + '1'
+           document.getElementById("delete").setAttribute('id', name2);
           //start();
         });
       });
@@ -280,6 +283,17 @@
             var errorMessage = error.message;
             console.log(error);
           });
+        }
+        document.getElementById("event-button").onclick = function() {clear_page()};
+        function clear_page(){
+          document.getElementById('event-title').value = "";
+          document.getElementById('streetaddress').value = "";
+          document.getElementById('city').value = "";
+          document.getElementById('state').value = "";
+          document.getElementById('zip').value = "";
+          document.getElementById('chooseDate').value = "";
+          document.getElementById('inputEventTime').value = "";
+          document.getElementById('inputReminderTime').value = "";
         }
         document.getElementById("b_update").onclick = function() {update_event()};
         function update_event(){
@@ -336,7 +350,7 @@
           }
         })
       })
-        //window.location.replace("homepage.html");
+        window.location.replace("homepage.html");
       });
         }
         document.getElementById("b_create").onclick = function() {create_event(); addReminder();};
@@ -349,13 +363,16 @@
             var date = document.getElementById("chooseDate").value;
             var eTime = document.getElementById("inputEventTime").value;
             var reminder = document.getElementById("inputReminderTime").value;
-
             //insert element into the table
             $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+': '+city+', '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
-                +'<button id=name type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align data-toggle="modal"data-target="#ModalCenter2""\><span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button>'
-                    + +'<button type="button" class="btn btn-default" aria-label="trash"\><span class="glyphicon glyphicon-trash" aria-hidden="true"\></span\></button\>'
-                    +'</td></tr>');
-            //code for button to edit
+                +'<button id=temp type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align data-toggle="modal"data-target="#ModalCenter2""\><span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button>'
+                +'<button id=delete type="button" class="btn btn-default" onclick="delEvent(this.id)" aria-label="trash"\><span class="glyphicon glyphicon-trash" aria-hidden="true"\></span\></button\>'
+                       +'</td></tr>');
+            document.getElementById("temp").setAttribute('id', name);
+            var name2 = name + '1'
+            document.getElementById("delete").setAttribute('id', name2);
+
+//code for button to edit
             //glyphicon glyphicon-edit
             /*<button type="button" class="btn btn-default" aria-label="Left Align">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -396,11 +413,43 @@
         //ref.push(data);
       });
         }
+        function delEvent(clicked_id){
+          var key;
+          var ref = firebase.database().ref('users');
+          var email = localStorage.getItem("email");
+          //console.log(email);
+          ref.once('value', function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+          var childKey = childSnapshot.key;
+          var childData = childSnapshot.val();
+          //console.log(childData["email"]);
+          if( childData["email"] === email) {
+            key = childKey;
+            //console.log(key);
+          }
+        });
+      }).then((res) => {
+        var eRef = firebase.database().ref('users/'+ key + '/events/');
+        eRef.once('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+        var childData = childSnapshot.val();
+        var check = childData["name"];
+        check = check + "1";
+        //console.log(check);
+        if(check === clicked_id) {
+          var nRef = firebase.database().ref('users/'+ key + '/events/' + childData["name"]);
+          //console.log(childData["name"]);
+          nRef.remove();
+          window.location.replace("homepage.html");
+        }
+      });
+    });
+      })
+        }
         function editCol(clicked_id){
             //$('td').prop('contenteditable',true);
-            console.log($('td'));
-            console.log($('td').text());
-
+            //console.log($('td'));
+            //console.log($('td').text
             var key;
             var ref = firebase.database().ref('users');
             var email = localStorage.getItem("email");
@@ -419,14 +468,13 @@
           var eRef = firebase.database().ref('users/'+ key + '/events/');
           eRef.once('value', function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
-          var childKey = childSnapshot.key;
           var childData = childSnapshot.val();
-          console.log(clicked_id);
-          console.log(childData["name"]);
+          //console.log(clicked_id);
+          //console.log(childData["name"]);
 
           //console.log(childData["email"]);
           if( childData["name"] === clicked_id) {
-            console.log("flag");
+            //console.log("flag");
             var name =  childData["name"];
             var address = childData["address"];
             var city = childData["city"];
@@ -458,9 +506,9 @@
             var date = document.getElementById("chooseDate").value;
             var eTime = document.getElementById("inputEventTime").value;
             var reminder = document.getElementById("inputReminderTime").value;
-			
+
 			//var schedule = require("../node-schedule");
-			
+
 			var MS_PER_MINUTE = 60000
 			//var myStartDate = new Date(myEndDateStime - durationInMinutes * MS_PER_MINUTE);
 			var schedule= "<%= schedule %>"
@@ -477,8 +525,8 @@
 			});
 
 }
-			
-		
+
+
 		</script>
 
     <!-- Optional JavaScript -->
