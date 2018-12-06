@@ -68,7 +68,7 @@ app.post('/remindersubmit', (req, res) => {
 		from: "myremindeservice@gmail.com",
 		to: email,
 		subject: "MyRemind Reminder!",
-		html: "<p>  this is your reminder you have things to do! /p>"
+		html: "Hello! this is your reminder that you have an event on" + date
 	};
 	transporter.sendMail(mailOptions, function (err, info) {
 		if(err)
