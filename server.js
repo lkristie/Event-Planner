@@ -4,7 +4,7 @@ var server= require('http').Server(app);
 const bodyParser= require("body-parser");
 const nodemailer = require('nodemailer');
 var fs=require('fs');
-schedule=require("node-schedule");
+var schedule=require("node-schedule");
 //connect firebase with the server / node.js
 var admin = require('firebase-admin');
 //service key
@@ -60,6 +60,9 @@ app.post('/remindersubmit', (req, res) => {
 	let body = '';
 	var date = req.body.d;
 	var email = req.body.email;
+	var eventDate = req.body.date;
+	var eventTime = req.body.time;
+	var name = req.body.name;
 	console.log(email);
 	console.log(date);
 	res.end("yes");
@@ -68,15 +71,16 @@ app.post('/remindersubmit', (req, res) => {
 		from: "myremindeservice@gmail.com",
 		to: email,
 		subject: "MyRemind Reminder!",
-		html: "<p>  this is your reminder you have things to do! /p>"
+		html: "Hello! This is your reminder that you have an event: " +name+", on " + eventDate + " at " + eventTime
 	};
+	var j = schedule.scheduleJob(date, function(){
 	transporter.sendMail(mailOptions, function (err, info) {
 		if(err)
 			console.log(err)
 		else
 			console.log(info)
 	});
-	
+	}.bind(null,mailOptions));
 });
 
 app.listen(8080, () => {
