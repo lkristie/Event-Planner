@@ -18,10 +18,10 @@ admin.initializeApp({
  var db=admin.database();
  //var app=admin.initializeApp();
 
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: false
 }));
+app.use(bodyParser.json());
 
 //respond with the login page
 app.get('/', function (req, res) {
@@ -45,11 +45,11 @@ app.post('/loginsubmit', (req, res) => {
   // res.send('Html docs/homepage.html');
 });
 
-app.post('/remindersubmit',bodyParser, function(req, res){
+app.post('/remindersubmit', (req, res) => {
 	
 	//idk
 	let body = '';
-	//var date = req.body.d;
+	var date = req.body.d;
 	console.log(date);
 	res.end("yes");
 	
