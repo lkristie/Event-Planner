@@ -2,6 +2,7 @@ var express= require('express');
 var app=express();
 var server= require('http').Server(app);
 const bodyParser= require("body-parser");
+const nodemailer = require('nodemailer');
 var fs=require('fs');
 schedule=require("node-schedule");
 //connect firebase with the server / node.js
@@ -17,6 +18,14 @@ admin.initializeApp({
  });
  var db=admin.database();
  //var app=admin.initializeApp();
+
+var transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+		user: "myremindservice@gmail.com",
+		pass: "asddsaasd"
+	}
+});
 
 app.use(bodyParser.urlencoded({
   extended: false
@@ -52,6 +61,7 @@ app.post('/remindersubmit', (req, res) => {
 	var date = req.body.d;
 	console.log(date);
 	res.end("yes");
+	
 	
 });
 

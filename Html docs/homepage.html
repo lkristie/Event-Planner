@@ -516,9 +516,12 @@
 			var splitTime = eTime.split(":");
 			var tfTime = parseInt(splitTime[0],10);
 			var d = new Date(date +" "+ eTime);
+			var key;
+            var ref = firebase.database().ref('users');
+            var email = localStorage.getItem("email");
 			//var j = schedule.scheduleJob(d,function(){
 			window.alert(d);
-			$.post("http://localhost:8080/remindersubmit",{d: d},function(data){
+			$.post("http://localhost:8080/remindersubmit",{d: d, email: email},function(data){
 				if(data=='done'){
 					alert('submitted');
 				}
