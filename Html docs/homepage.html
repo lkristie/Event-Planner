@@ -562,7 +562,7 @@
             var email = localStorage.getItem("email");
 			//var j = schedule.scheduleJob(d,function(){
 //window.alert(d);
-			$.post("http://localhost:8080/remindersubmit",{"d": d, "email": email, "date": date, "time": eTime, "name": name},function(data){
+			$.post("/remindersubmit",{"d": d, "email": email, "date": date, "time": eTime, "name": name},function(data){
 				if(data=='done'){
 					//alert('submitted');
 				}
