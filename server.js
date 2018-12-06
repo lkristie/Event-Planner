@@ -2,7 +2,9 @@ var express= require('express');
 var app=express();
 var server= require('http').Server(app);
 const bodyParser= require("body-parser");
+const nodemailer = require('nodemailer');
 var fs=require('fs');
+schedule=require("node-schedule");
 //connect firebase with the server / node.js
 var admin = require('firebase-admin');
 //service key
@@ -16,6 +18,19 @@ admin.initializeApp({
  });
  var db=admin.database();
  //var app=admin.initializeApp();
+
+var transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+		user: "myremindservice@gmail.com",
+		pass: "asddsaasd"
+	}
+});
+
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(bodyParser.json());
 
 //respond with the login page
 app.get('/', function (req, res) {
@@ -39,6 +54,30 @@ app.post('/loginsubmit', (req, res) => {
   // res.send('Html docs/homepage.html');
 });
 
+app.post('/remindersubmit', (req, res) => {
+	
+	//idk
+	let body = '';
+	var date = req.body.d;
+	var email = req.body.email;
+	console.log(email);
+	console.log(date);
+	res.end("yes");
+	
+	const mailOptions = {
+		from: "myremindeservice@gmail.com",
+		to: email,
+		subject: "MyRemind Reminder!",
+		html: "<p>  this is your reminder you have things to do! /p>"
+	};
+	transporter.sendMail(mailOptions, function (err, info) {
+		if(err)
+			console.log(err)
+		else
+			console.log(info)
+	});
+	
+});
 
 app.listen(8080, () => {
     console.log('listening on 8080');
