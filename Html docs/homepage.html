@@ -22,10 +22,11 @@
             <h2>MyRemind</h2>
             <p>We remember so you dont have to</p>
         </div>
+
     </head>
     <body>
 		<div class="container">
-            <button type="button" class="btn btn-info" id="event-button" data-toggle="modal"data-target="#ModalCenter">Create a Event</button>
+            <button type="button" class="btn btn-success" id="event-button" data-toggle="modal"data-target="#ModalCenter">Create a Event</button>
             <button type="button" class="btn btn-warning" id="logout-button">Logout</button>
         </div>
 		<!-- Modal -->
@@ -227,7 +228,7 @@
             </div>
             </div>
         </div>
-		<div class="container">
+		<div class="container"id="tableCont">
 			<table class="table table-striped" id="eventTable">
 				<!--<thead>-->
 					<tr>
@@ -586,11 +587,14 @@
         </script>
     </body>
     <style>
+     /* head {
+        border-radius: 25px;
+        background: #73AD21;
+        padding: 20px; 
+        background-color: #99c2ff;
+      }*/
       body {
-        background-color: #99c2ff;
-      }
-      #cont {
-        background-color: #99c2ff;
+        background-color:#99e6ff;
       }
     </style>
 </html>
