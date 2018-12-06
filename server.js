@@ -83,6 +83,6 @@ app.post('/remindersubmit', (req, res) => {
 	}.bind(null,mailOptions));
 });
 
-app.listen(8080, () => {
+app.listen(process.event.PORT || 8080, () => {
     console.log('listening on 8080');
 });
