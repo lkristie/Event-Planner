@@ -3,6 +3,17 @@ var app=express();
 var server= require('http').Server(app);
 const bodyParser= require("body-parser");
 var fs=require('fs');
+//stuff for nodemailer
+const exphbs=require('express-handlebars');
+const nodemailer=require('nodemailer');
+app.engine('handlebars', exphbs);
+app.set('view engine', 'handlebars');
+
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(bodyParser.json());
+
 //connect firebase with the server / node.js
 var admin = require('firebase-admin');
 //service key
@@ -30,6 +41,15 @@ app.get('/CreateAccount.html', function(req, res){
 app.get('/login.html', function(req, res){
    res.sendFile(__dirname+"/Html docs/Login.html");
 });
+
+//post for sending a message
+app.post('/sendMessage',(req, res) =>{
+   console.log("hello");
+   console.log(req.body);
+
+});
+
+
 //not using this post
 app.post('/loginsubmit', (req, res) => {
    //res.statusCode=200;

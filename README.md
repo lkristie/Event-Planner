@@ -9,7 +9,7 @@ TEAM MEMBERS
 PROJECT NAME:
 - Event Planner
 - Each user has will login into their account.
-- The user can create events and will recieve email notificiations before the u$
+- The user can create events and will recieve email notificiations before the event
 - User will see list of upcoming events on the homepage.
 
 TECHNOLOGIES WE PLAN ON USING:

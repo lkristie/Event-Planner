@@ -19,7 +19,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <div class="container">
-            <h2>Project Name</h2>
+            <h2>MyRemind</h2>
             <p>We remember so you dont have to</p>
         </div>
     </head>
@@ -39,29 +39,29 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form  action="POST" method="sendMessage">
                         <div class="form-group row"> <!--Input event title-->
                                 <label for="event-title" class="col-sm-3 col-form-label">Event Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="event-title"placeholder="">
+                                    <input type="text" class="form-control" id="event-title"placeholder="" name="eventName">
                                 </div>
 
                         </div>
                         <div class="form-group row"> <!--Input address-->
                             <label for="address"class="col-sm-3 col-form-label" >Address</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="streetaddress" placeholder="Street Address">
+                                <input type="text" class="form-control" id="streetaddress" placeholder="Street Address" name="eventAdress">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-md-6"><!--city input-->
-                                <input id="city" type="text" class="form-control" placeholder="City">
+                                <input id="city" type="text" class="form-control" placeholder="City" name="eventCity">
                             </div>
                             <div class="form-group col-md-4"><!--state input-->
-                                <input id="state" type="text" class="form-control" placeholder="State">
+                                <input id="state" type="text" class="form-control" placeholder="State" name="eventState">
                             </div>
                             <div class="form-group col-md-2"> <!--Zip input-->
-                                <input id="zip" type="text" class="form-control" placeholder="Zip">
+                                <input id="zip" type="text" class="form-control" placeholder="Zip" name="eventZip">
                             </div>
                         </div>
                         <div class="form-group row"> <!-- Date input -->
@@ -73,7 +73,7 @@
                         <div class="form-group row">
                             <div class="form-group col-md-4">
                                 <label for="inputEventTime"> Event Time: </label> <!--Event time -->
-                                <select id="inputEventTime" class="form-control">
+                                <select id="inputEventTime" class="form-control" name="eventTime">
                                     <option selected>Event Time</option>
                                     <option>12:00 am</option> <option>12:30 am</option> <option>01:00 am</option> <option>01:30 am</option>
                                     <option>02:00 am</option> <option>02:30 am</option> <option>03:00 am</option> <option>03:30 am</option>
@@ -107,7 +107,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="b_create" type="button" class="btn btn-success" data-dismiss="modal">Create</button>
+                    <button id="b_create" type="submit" class="btn btn-success" data-dismiss="modal" onclick="sendMessage()">Create</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
@@ -434,8 +434,14 @@
     });
             //window.alert("This button works");
         }
+            // action="POST" method="/sendMessage"
+            function sendMessage(){
+                window.alert("get into this function");
+                $.post("/sendMessage", function(data){
+                    console.log("in send client");
+                });
+            }
         </script>
-
     <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
