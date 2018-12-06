@@ -37,6 +37,7 @@
 	<button id="b_login" type="button" onclick="login()" class="btn btn-success">Log In</button>
 	<!--<a href="CreateAccount.html" id = "b_pass" type="button" class="btn btn-info">Create An Account</a>-->
 	<button id="b_pass" type="button" class="btn btn-info" onclick="newAccount()">CreateAccount</button>
+  <button id="b_reset" type="button" class="btn btn-warning" onclick="resetPassword()">ResetPassword</button>
 </div>
 
 
@@ -90,6 +91,31 @@ function newAccount(){
 	//window.alert("new Account page");
 	window.location.replace("CreateAccount.html");
 }
+function resetPassword(){
+  var auth = firebase.auth();
+  var emailAddress = document.getElementById("user").value;
+
+  auth.sendPasswordResetEmail(emailAddress).then(function() {
+    // Email sent.
+    alert('Reset Password Email Sent');
+  }).catch(function(error) {
+    // An error happened.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    if (errorCode === 'auth/user-not-found') {
+    alert('User not found. Place a valid email into email field');
+    }
+    else if (errorCode === 'weak-password') {
+    alert('Password is weak. Must be 6 or more characters');
+    }
+    else if (errorCode === 'auth/invalid-email') {
+    alert('Invalid Email. Place a valid email into email field');
+    } else {
+    alert(errorMessage);
+    }
+    console.log(error);
+  });
+  }
 </script>
 <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
 <script>
