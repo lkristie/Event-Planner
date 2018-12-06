@@ -39,7 +39,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form  action="POST" method="sendMessage">
+                    <form  action="sendMessage" method="post">
                         <div class="form-group row"> <!--Input event title-->
                                 <label for="event-title" class="col-sm-3 col-form-label">Event Name</label>
                                 <div class="col-sm-9">
@@ -383,7 +383,12 @@
         updates['/users/' + key + '/events/' + name] = data;
         firebase.database().ref().update(updates);
         //ref.push(data);
-      });
+
+        // action="POST" method="/sendMessage"
+            $.post("/sendMessage",data, function(response){
+                //window.alert("get into this function");
+            });
+        });
         }
         function editCol(clicked_id){
             //$('td').prop('contenteditable',true);
@@ -433,15 +438,8 @@
       })
     });
             //window.alert("This button works");
-        }
-            // action="POST" method="/sendMessage"
-            function sendMessage(){
-                window.alert("get into this function");
-                $.post("/sendMessage", function(data){
-                    console.log("in send client");
-                });
-            }
-        </script>
+    }
+    </script>
     <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

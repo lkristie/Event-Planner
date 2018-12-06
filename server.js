@@ -43,12 +43,58 @@ app.get('/login.html', function(req, res){
 });
 
 //post for sending a message
-app.post('/sendMessage',(req, res) =>{
-   console.log("hello");
+/*
+name: name,
+address: address,
+city: city,
+state: state,
+zip: zip,
+date: date,
+eTime: eTime,
+reminder: reminder,
+email: email
+*/
+app.post('/sendMessage', (req, res) => {
    console.log(req.body);
-
+   const output=
+   `<h3>Event Reminder!!!</h3>
+   <ul>
+      <li>${req.body.name} </li>
+      <li>${req.body.address} </li>
+      <li>${req.body.city} ${req.body.state} ${req.body.zip}</li>
+      <li>${req.body.date} </li>
+      <li>${req.body.eTime} </li>
+   </ul>`;
+   let transporter = nodemailer.createTransport({
+      host: 'smtp.example.com',//not sure about this
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+          user: 'myremindservice@gmail.com', // generated ethereal user
+          pass: 'asddsaasd' // generated ethereal password
+      },
+      tls:{
+         rejectUnauthorized:false
+      }
+  });
+  // setup email data with unicode symbols
+  let mailOptions = {
+      from: '"MyRemind" <myremindservice@gmail.com>', // sender address
+      to: body.req.email, // list of receivers
+      subject: 'Event Reminder', // Subject line
+      text: 'Hello, ', // plain text body
+      html: output // html body
+  };
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          return console.log(error);
+      }
+      console.log('Message sent: %s', info.messageId);
+      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+      window.alert("Email Sent");
+   });
 });
-
 
 //not using this post
 app.post('/loginsubmit', (req, res) => {
