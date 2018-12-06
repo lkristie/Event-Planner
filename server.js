@@ -60,6 +60,9 @@ app.post('/remindersubmit', (req, res) => {
 	let body = '';
 	var date = req.body.d;
 	var email = req.body.email;
+	var eventDate = req.body.date;
+	var eventTime = req.body.time;
+	var name = req.body.name;
 	console.log(email);
 	console.log(date);
 	res.end("yes");
@@ -68,8 +71,9 @@ app.post('/remindersubmit', (req, res) => {
 		from: "myremindeservice@gmail.com",
 		to: email,
 		subject: "MyRemind Reminder!",
-		html: "Hello! this is your reminder that you have an event on" + date
+		html: "Hello! This is your reminder that you have an event: " +name+", on " + eventDate + " at " + eventTime
 	};
+	
 	transporter.sendMail(mailOptions, function (err, info) {
 		if(err)
 			console.log(err)

@@ -535,6 +535,7 @@
             var zip = document.getElementById("zip").value;
             var date = document.getElementById("chooseDate").value;
             var eTime = document.getElementById("inputEventTime").value;
+			var rdate = document.getElementById("reminderDate").value;
             var reminder = document.getElementById("inputReminderTime").value;
 
 			//var schedule = require("../node-schedule");
@@ -545,13 +546,13 @@
 			var splitDate = date.split("/");
 			var splitTime = eTime.split(":");
 			var tfTime = parseInt(splitTime[0],10);
-			var d = new Date(date +" "+ eTime);
+			var d = new Date(rdate +" "+ reminder);
 			var key;
             var ref = firebase.database().ref('users');
             var email = localStorage.getItem("email");
 			//var j = schedule.scheduleJob(d,function(){
 			window.alert(d);
-			$.post("http://localhost:8080/remindersubmit",{"d": d, "email": email},function(data){
+			$.post("http://localhost:8080/remindersubmit",{"d": d, "email": email, "date": date, "time": eTime, "name": name},function(data){
 				if(data=='done'){
 					alert('submitted');
 				}
