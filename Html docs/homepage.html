@@ -284,6 +284,17 @@
             console.log(error);
           });
         }
+        document.getElementById("event-button").onclick = function() {clear_page()};
+        function clear_page(){
+          document.getElementById('event-title').value = "";
+          document.getElementById('streetaddress').value = "";
+          document.getElementById('city').value = "";
+          document.getElementById('state').value = "";
+          document.getElementById('zip').value = "";
+          document.getElementById('chooseDate').value = "";
+          document.getElementById('inputEventTime').value = "";
+          document.getElementById('inputReminderTime').value = "";
+        }
         document.getElementById("b_update").onclick = function() {update_event()};
         function update_event(){
           var name = document.getElementById("event-title2").value;
@@ -352,7 +363,6 @@
             var date = document.getElementById("chooseDate").value;
             var eTime = document.getElementById("inputEventTime").value;
             var reminder = document.getElementById("inputReminderTime").value;
-
             //insert element into the table
             $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+': '+city+', '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
                 +'<button id=temp type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align data-toggle="modal"data-target="#ModalCenter2""\><span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button>'
