@@ -127,7 +127,7 @@
             </div>
             </div>
         </div>
-        
+
         <div class="modal fade" id="ModalCenter2" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -188,19 +188,19 @@
                                     <option>22:00</option> <option>22:30</option> <option>23:00</option> <option>23:30</option>
                                 </select>
                             </div>
-                            
+
                         </div>
                         <!-- remind others field-->
                         <div class="form-group row"> <!-- Reminder Date input -->
                             <label class="col-sm-2 col-form-label" for="date">Reminder Date</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="reminderDate" name="date" placeholder="MM/DD/YYYY" type="text"/>
+                                <input class="form-control" id="reminderDate2" name="date" placeholder="MM/DD/YYYY" type="text" value=""/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-md-4">
                                 <label for="inputReminderTime"> Reminder Time: </label> <!--Event time -->
-                                <select id="inputReminderTime" class="form-control">
+                                <select id="inputReminderTime2" class="form-control" value="">
                                     <option selected>Event Time</option>
                                     <option>12:00 am</option> <option>12:30 am</option> <option>01:00 am</option> <option>01:30 am</option>
                                     <option>02:00 am</option> <option>02:30 am</option> <option>03:00 am</option> <option>03:30 am</option>
@@ -235,7 +235,8 @@
                         <th scope="col">Date</th>
                         <th scope="col">Address</th>
 						<th scope="col">Time</th>
-                        <th scopr="col">reminder</th>
+                        <th scopr="col">Reminder Date</th>
+                        <th scopr="col">Reminder Time</th>
                         <th scope="col"></th>
 					</tr>
 				<!--</thead>
@@ -286,9 +287,10 @@
           var zip = childData["zip"];
           var date = childData["date"];
           var eTime = childData["eTime"];
-          var reminder = childData["reminder"];
+          var rDate = childData["rDate"];
+          var rTime = childData["rTime"];
           //$('#eventTable').append('<tr><td>'+name+'</td><td>'+address+' '+city+' '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td></tr>');
-          $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+': '+city+', '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
+          $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+': '+city+', '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+rDate+'</td><td>'+rTime+'</td><td>'
                 +'<button id=temp type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align" data-toggle="modal" data-target="#ModalCenter2"\> <span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button\>'
                 +'<button id=delete type="button" class="btn btn-default" onclick="delEvent(this.id)" aria-label="trash"\><span class="glyphicon glyphicon-trash" aria-hidden="true"\></span\></button\>'
                     +'</td></tr>');
@@ -323,6 +325,7 @@
           document.getElementById('zip').value = "";
           document.getElementById('chooseDate').value = "";
           document.getElementById('inputEventTime').value = "";
+          document.getElementById('reminderDate').value = "";
           document.getElementById('inputReminderTime').value = "";
         }
         document.getElementById("b_update").onclick = function() {update_event()};
@@ -335,7 +338,8 @@
           var zip = document.getElementById("zip2").value;
           var date = document.getElementById("chooseDate2").value;
           var eTime = document.getElementById("inputEventTime2").value;
-          var reminder = document.getElementById("inputReminderTime2").value;
+          var rDate = document.getElementById("reminderDate2").value;
+          var rTime = document.getElementById("inputReminderTime2").value;
 
           var user = firebase.auth().currentUser;
           var userId = user.uid;
@@ -374,7 +378,8 @@
               zip: zip,
               date: date,
               eTime: eTime,
-              reminder: reminder,
+              rDate: rDate,
+              rTime: rTime,
               email: email
             });
           }
@@ -392,9 +397,10 @@
             var zip = document.getElementById("zip").value;
             var date = document.getElementById("chooseDate").value;
             var eTime = document.getElementById("inputEventTime").value;
-            var reminder = document.getElementById("inputReminderTime").value;
+            var rDate = document.getElementById("reminderDate").value;
+            var rTime = document.getElementById("inputReminderTime").value;
             //insert element into the table
-            $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+': '+city+', '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+reminder+'</td><td>'
+            $('#eventTable').append('<tr><td>'+name+'</td><td>'+date+'</td><td>'+address+': '+city+', '+state+' '+zip+'</td><td>'+eTime+'</td><td>'+rDate+'</td><td>'+rTime+'</td><td>'
                 +'<button id=temp type="button" class="btn btn-default" onclick="editCol(this.id)" aria-label="Left Align data-toggle="modal"data-target="#ModalCenter2""\><span class="glyphicon glyphicon-edit" aria-hidden="true"\></span\></button>'
                 +'<button id=delete type="button" class="btn btn-default" onclick="delEvent(this.id)" aria-label="trash"\><span class="glyphicon glyphicon-trash" aria-hidden="true"\></span\></button\>'
                        +'</td></tr>');
@@ -434,7 +440,8 @@
           zip: zip,
           date: date,
           eTime: eTime,
-          reminder: reminder,
+          rDate: rDate,
+          rTime: rTime,
           email: email
         };
         var updates = {};
@@ -512,7 +519,8 @@
             var zip = childData["zip"];
             var date = childData["date"];
             var eTime = childData["eTime"];
-            var reminder = childData["reminder"];
+            var rDate = childData["rDate"];
+            var rTime = childData["rTime"];
             document.getElementById('event-title2').setAttribute('value', name);
             document.getElementById('streetaddress2').setAttribute('value', address);
             document.getElementById('city2').setAttribute('value', city);
@@ -520,7 +528,8 @@
             document.getElementById('zip2').setAttribute('value', zip);
             document.getElementById('chooseDate2').setAttribute('value', date);
             document.getElementById('inputEventTime2').setAttribute('value', eTime);
-            document.getElementById('inputReminderTime2').setAttribute('value', reminder);
+            document.getElementById('reminderDate2').setAttribute('value', rDate);
+            document.getElementById('inputReminderTime2').setAttribute('value', rTime);
           }
         });
       })
@@ -535,7 +544,8 @@
             var zip = document.getElementById("zip").value;
             var date = document.getElementById("chooseDate").value;
             var eTime = document.getElementById("inputEventTime").value;
-            var reminder = document.getElementById("inputReminderTime").value;
+            var rDate = document.getElementById("reminderDate").value;
+            var rTime = document.getElementById("inputReminderTime").value;
 
 			//var schedule = require("../node-schedule");
 
