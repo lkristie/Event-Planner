@@ -59,9 +59,23 @@ app.post('/remindersubmit', (req, res) => {
 	//idk
 	let body = '';
 	var date = req.body.d;
+	var email = req.body.email;
+	console.log(email);
 	console.log(date);
 	res.end("yes");
 	
+	const mailOptions = {
+		from: "myremindeservice@gmail.com",
+		to: email,
+		subject: "MyRemind Reminder!",
+		html: "<p>  this is your reminder you have things to do! /p>"
+	};
+	transporter.sendMail(mailOptions, function (err, info) {
+		if(err)
+			console.log(err)
+		else
+			console.log(info)
+	});
 	
 });
 
