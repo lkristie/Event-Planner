@@ -1,6 +1,8 @@
+const PORT =process.env.PORT || 8080;
+
 var express= require('express');
 var app=express();
-var server= require('http').Server(app);
+const server= require('http').Server(app);
 const bodyParser= require("body-parser");
 const nodemailer = require('nodemailer');
 var fs=require('fs');
@@ -83,6 +85,6 @@ app.post('/remindersubmit', (req, res) => {
 	}.bind(null,mailOptions));
 });
 
-app.listen(process.event.PORT || 8080, () => {
+app.listen(PORT || 8080, () => {
     console.log('listening on 8080');
 });
